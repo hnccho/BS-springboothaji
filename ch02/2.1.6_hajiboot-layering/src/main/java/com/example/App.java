@@ -22,8 +22,7 @@ public class App implements CommandLineRunner {
         customerService.save(new Customer(3, "Suneo", "Honekawa"));
 
         // 데이터 추가
-        customerService.findAll()
-                .forEach(System.out::println);
+        customerService.findAll().forEach(System.out::println);
     }
 
     public static void main(String[] args) {

@@ -20,8 +20,7 @@ public class App implements CommandLineRunner {
         Customer created = customerRepository.save(new Customer(null, "Hidetoshi", "Dekisugi"));
         System.out.println(created + " is created!");
         // 데이터 표시
-        customerRepository.findAll()
-                .forEach(System.out::println);
+        customerRepository.findAll().forEach(System.out::println);
     }
 
     public static void main(String[] args) {
