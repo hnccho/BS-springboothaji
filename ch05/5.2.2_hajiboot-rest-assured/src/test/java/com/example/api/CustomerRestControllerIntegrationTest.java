@@ -88,6 +88,30 @@ public class CustomerRestControllerIntegrationTest {
     }
 
     @Test
+    public void testPutCustomers() throws Exception {
+        Customer customer3 = new Customer();
+        customer3.setFirstName("Nobita");
+        customer3.setLastName("Nobi");
+
+        given().body(customer3)
+                .contentType(ContentType.JSON)
+                .and()
+                .when().put("/api/customers/{id}", customer1.getId())
+                .then()
+                .statusCode(HttpStatus.OK.value())
+                .body("id", is(customer1.getId()))
+                .body("firstName", is(customer3.getFirstName()))
+                .body("lastName", is(customer3.getLastName()));
+
+        when().get("/api/customers/{id}", customer1.getId())
+                .then()
+                .statusCode(HttpStatus.OK.value())
+                .body("id", is(customer1.getId()))
+                .body("firstName", is(customer3.getFirstName()))
+                .body("lastName", is(customer3.getLastName()));
+    }
+    
+   @Test
     public void testDeleteCustomers() throws Exception {
         when().delete("/api/customers/{id}", customer1.getId())
                 .then()
