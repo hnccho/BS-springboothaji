@@ -32,8 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/loginForm")
                 .failureUrl("/loginForm?error")
                 .defaultSuccessUrl("/customers", true)
-                .usernameParameter("username").passwordParameter("password")
-                .and();
+                .usernameParameter("username")
+                .passwordParameter("password");
         http.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout**"))
                 .logoutSuccessUrl("/loginForm");
@@ -51,8 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Override
         public void init(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(userDetailsService)
-                    .passwordEncoder(passwordEncoder());
+            auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
         }
     }
 
